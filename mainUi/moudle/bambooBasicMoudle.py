@@ -13,10 +13,13 @@ def loopPrintEXP(colum, keyName, keyId):
         n += 1            
     return tempdict
 
-def logIn(userName, passwd, host="kistu.workshop8.cn"):
+def logIn(userName, passwd, host):
     gazu.client.set_host("https://"+host+"/api")
+    '''
+        if you use http server just replace https to http
+    '''
     try:
-        gazu.log_in(userName+"@workshop8.cn", passwd)
+        gazu.log_in(userName, passwd)
     except:
         return ['Bad UserName or Password Refill Again', 1]
     else:    
@@ -38,14 +41,17 @@ def getShot4User(sequence):
     shotDict = loopPrintEXP(shots, 'name', 'id')
     return shotDict
 
+
 def getVer4User(project, shot, kind):
     path = f"d:/project/{project}/shot/{shot}/{kind}/task"
+    # remember replace to your path
     version = os.listdir(path)
     return version
 
 def getAssets(project, label):
     labelName = label.lower()
     path = f"d:/project/{project}/{labelName}"
+    # remember replace to your path
     return path
 
 def getTools4User():

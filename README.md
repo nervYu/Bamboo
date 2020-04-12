@@ -1,2 +1,3 @@
 # Bamboo
- a Gui tool for ZouAPI base on Pyside2
+ a Gui Launcher for launch your DCC Application and get task from Zou API
+ 

@@ -16,7 +16,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 
-class Ui_MainWindow(object):
+class Ui_bambooLogin(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -103,10 +103,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"login", None))
         self.username.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u7528\u6237\u540d", None))
-        self.host.setText(QCoreApplication.translate("MainWindow", u"kistu.workshop8.cn", None))
+        self.host.setText(QCoreApplication.translate("MainWindow", u"insert your host", None))
         self.host.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u670d\u52a1\u5668", None))
         self.passwd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5bc6\u7801", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Launch", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u" workShop8 launchBox                                                         ", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u" Bamboo LaunchBox                                                         ", None))
     # retranslateUi
 

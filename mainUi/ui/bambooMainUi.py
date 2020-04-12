@@ -16,25 +16,25 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 
-class Ui_ws8Main(object):
-    def setupUi(self, ws8Main):
-        if ws8Main.objectName():
-            ws8Main.setObjectName(u"ws8Main")
-        ws8Main.resize(598, 586)
+class Ui_bambooMain(object):
+    def setupUi(self, bambooMain):
+        if bambooMain.objectName():
+            bambooMain.setObjectName(u"bambooMain")
+        bambooMain.resize(598, 586)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(ws8Main.sizePolicy().hasHeightForWidth())
-        ws8Main.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(bambooMain.sizePolicy().hasHeightForWidth())
+        bambooMain.setSizePolicy(sizePolicy)
         icon = QIcon()
         icon.addFile(u"C:/Users/Yutao/Desktop/\u516b\u53f7\u5de5\u574a_logo.png", QSize(), QIcon.Normal, QIcon.Off)
-        ws8Main.setWindowIcon(icon)
-        ws8Main.setWindowOpacity(1.000000000000000)
-        ws8Main.setStyleSheet(u"background-color: rgb(241, 241, 241);")
-        ws8Main.setIconSize(QSize(60, 60))
-        self.actionAbout = QAction(ws8Main)
+        bambooMain.setWindowIcon(icon)
+        bambooMain.setWindowOpacity(1.000000000000000)
+        bambooMain.setStyleSheet(u"background-color: rgb(241, 241, 241);")
+        bambooMain.setIconSize(QSize(60, 60))
+        self.actionAbout = QAction(bambooMain)
         self.actionAbout.setObjectName(u"actionAbout")
-        self.centralwidget = QWidget(ws8Main)
+        self.centralwidget = QWidget(bambooMain)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -116,44 +116,44 @@ class Ui_ws8Main(object):
 
         self.gridLayout.addWidget(self.projectSelect, 1, 0, 2, 1)
 
-        ws8Main.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(ws8Main)
+        bambooMain.setCentralWidget(self.centralwidget)
+        self.menubar = QMenuBar(bambooMain)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 598, 21))
         self.menuAbout = QMenu(self.menubar)
         self.menuAbout.setObjectName(u"menuAbout")
-        ws8Main.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(ws8Main)
+        bambooMain.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(bambooMain)
         self.statusbar.setObjectName(u"statusbar")
         self.statusbar.setEnabled(True)
-        ws8Main.setStatusBar(self.statusbar)
+        bambooMain.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menuAbout.menuAction())
         self.menuAbout.addSeparator()
         self.menuAbout.addAction(self.actionAbout)
 
-        self.retranslateUi(ws8Main)
+        self.retranslateUi(bambooMain)
 
         self.tabArea01.setCurrentIndex(1)
         self.tabArea_Task.setCurrentIndex(1)
 
 
-        QMetaObject.connectSlotsByName(ws8Main)
+        QMetaObject.connectSlotsByName(bambooMain)
     # setupUi
 
-    def retranslateUi(self, ws8Main):
-        ws8Main.setWindowTitle(QCoreApplication.translate("ws8Main", u"workshop8 LaunchBox", None))
-        self.actionAbout.setText(QCoreApplication.translate("ws8Main", u"about", None))
+    def retranslateUi(self, bambooMain):
+        bambooMain.setWindowTitle(QCoreApplication.translate("bambooMain", u"workshop8 LaunchBox", None))
+        self.actionAbout.setText(QCoreApplication.translate("bambooMain", u"about", None))
         ___qtreewidgetitem = self.seqView.headerItem()
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("ws8Main", u"seqView", None));
-        self.tabArea01.setTabText(self.tabArea01.indexOf(self.assetTab), QCoreApplication.translate("ws8Main", u"Asset", None))
-        self.tabArea01.setTabText(self.tabArea01.indexOf(self.tab), QCoreApplication.translate("ws8Main", u"Reference", None))
-        self.tabArea01.setTabText(self.tabArea01.indexOf(self.toolTab), QCoreApplication.translate("ws8Main", u"Tool", None))
-        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_FX), QCoreApplication.translate("ws8Main", u"FX", None))
-        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_CMP), QCoreApplication.translate("ws8Main", u"CMP", None))
-        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_Lgt), QCoreApplication.translate("ws8Main", u"LGT", None))
-        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_MOD), QCoreApplication.translate("ws8Main", u"MOD", None))
-        self.curUser.setText(QCoreApplication.translate("ws8Main", u"TextLabel", None))
-        self.menuAbout.setTitle(QCoreApplication.translate("ws8Main", u"about", None))
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("bambooMain", u"seqView", None));
+        self.tabArea01.setTabText(self.tabArea01.indexOf(self.assetTab), QCoreApplication.translate("bambooMain", u"Asset", None))
+        self.tabArea01.setTabText(self.tabArea01.indexOf(self.tab), QCoreApplication.translate("bambooMain", u"Reference", None))
+        self.tabArea01.setTabText(self.tabArea01.indexOf(self.toolTab), QCoreApplication.translate("bambooMain", u"Tool", None))
+        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_FX), QCoreApplication.translate("bambooMain", u"FX", None))
+        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_CMP), QCoreApplication.translate("bambooMain", u"CMP", None))
+        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_Lgt), QCoreApplication.translate("bambooMain", u"LGT", None))
+        self.tabArea_Task.setTabText(self.tabArea_Task.indexOf(self.tab_MOD), QCoreApplication.translate("bambooMain", u"MOD", None))
+        self.curUser.setText(QCoreApplication.translate("bambooMain", u"TextLabel", None))
+        self.menuAbout.setTitle(QCoreApplication.translate("bambooMain", u"about", None))
     # retranslateUi
 

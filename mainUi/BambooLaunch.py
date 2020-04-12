@@ -1,6 +1,11 @@
-from moudle import ws8basic
-from ui.login import Ui_MainWindow
-from ui.main import Ui_ws8Main
+'''
+Powered by Panda Yu
+E-mail: yutao@workshop8.cn
+'''
+
+import moudle.bambooBasicMoudle as bbm
+from ui.bambooLogin import Ui_bambooLogin
+from ui.bambooMainUi import Ui_bambooMain
 from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
     QRect, QSize, QUrl, Qt, QFileInfo)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
@@ -11,7 +16,10 @@ import sys
 import os
 import subprocess
 
-class loginBox(QMainWindow, Ui_MainWindow):
+'''
+    login Ui 
+'''
+class loginBox(QMainWindow, Ui_bambooLogin):
     def __init__(self, parent=None):
         super(loginBox, self).__init__(parent)
         self.setupUi(self)
@@ -19,7 +27,7 @@ class loginBox(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(self.logFunc)
 
     def logFunc(self):
-        results = ws8basic.logIn(self.username.text(), self.passwd.text(), self.host.text())
+        results = bbm.logIn(self.username.text(), self.passwd.text(), self.host.text())
         if results[1] == 0 :
             QMessageBox.information(self, "greet", results[0])
             self.close()
@@ -28,13 +36,16 @@ class loginBox(QMainWindow, Ui_MainWindow):
         else:
             QMessageBox.information(self, "Error", results[0])
 
-class mainWindowT(QMainWindow, Ui_ws8Main):
+'''
+    Main Ui 
+'''
+class mainWindowT(QMainWindow, Ui_bambooMain):
     def __init__(self, parent=None):
         super(mainWindowT, self).__init__(parent)
         self.setupUi(self)
         self.setFixedSize(self.width(), self.height())
-        self.curUser.setText(ws8basic.getUser()['last_name'])
-        self.getProjects = ws8basic.getProject4User()
+        self.curUser.setText(bbm.getUser()['last_name'])
+        self.getProjects = bbm.getProject4User()
         self.projectSelect.addItems(list(self.getProjects.keys()))
         self.projectSelect.itemClicked.connect(self.getSeqView)
         self.projectSelect.itemClicked.connect(self.getAssetView)
@@ -44,20 +55,25 @@ class mainWindowT(QMainWindow, Ui_ws8Main):
         self.refTree.doubleClicked.connect(self.openRefFile)
         self.listWidget_CMP.itemDoubleClicked.connect(self.openComp)
         self.listWidget_FX.itemDoubleClicked.connect(self.openFx)
-        #self.listWidget_LGT.itemDoubleClicked.connect(self.openLgt)
-        #self.listWidget_MOD
+        self.listWidget_LGT.itemDoubleClicked.connect(self.openLgt)
+        self.listWidget_MOD.itemDoubleClicked.connect(self.openMod)
+
+
+    '''
+        Get your Project,Sequence and ShotTask from Zou API
+    '''
         
     def getSeqView(self, item):
         self.seqView.clear()
         self.selProject = item.text()
         projectId = self.getProjects[self.selProject]
-        getSequs = ws8basic.getSeq(projectId)
+        getSequs = bbm.getSeq(projectId)
         sequsList = list(getSequs.keys())
         for seq in sequsList :
             seqID = getSequs[seq]
             seqItem = QTreeWidgetItem(self.seqView)
             seqItem.setText(0, seq)
-            shotDict = ws8basic.getShot4User(seqID)
+            shotDict = bbm.getShot4User(seqID)
             shotList = list(shotDict.keys())
             for shot in shotList :
                 shotitem = QTreeWidgetItem(seqItem)
@@ -65,7 +81,7 @@ class mainWindowT(QMainWindow, Ui_ws8Main):
 
     def getAssetView(self, item):
         project = item.text()
-        path = ws8basic.getAssets(project, 'assets')
+        path = bbm.getAssets(project, 'assets')
         self.assetTreeModel = QFileSystemModel()
         self.assetTreeModel.setRootPath(path)
         self.assetTree.setModel(self.assetTreeModel)
@@ -73,7 +89,7 @@ class mainWindowT(QMainWindow, Ui_ws8Main):
 
     def getRefView(self, item):
         project = item.text()
-        path = ws8basic.getAssets(project, 'reference')
+        path = bbm.getAssets(project, 'reference')
         self.refTreeModel = QFileSystemModel()
         self.refTreeModel.setRootPath(path)
         self.refTree.setModel(self.refTreeModel)
@@ -88,7 +104,7 @@ class mainWindowT(QMainWindow, Ui_ws8Main):
         shotEle = self.shotName.split('_')
         taskType = ['CMP', 'LGT', 'MOD', 'FX']
         try:
-            taskDict = ws8basic.getTaskDict(taskType, shotEle)
+            taskDict = bbm.getTaskDict(taskType, shotEle)
             self.listWidget_CMP.addItems(taskDict['CMP_task'])
             self.listWidget_FX.addItems(taskDict['FX_task'])
             self.listWidget_LGT.addItems(taskDict['LGT_task'])
@@ -96,6 +112,11 @@ class mainWindowT(QMainWindow, Ui_ws8Main):
         except:
             pass
 
+
+    '''
+        Open your project Files. From different task folder. 
+        Rember replace path to yours
+    '''
     def openAssetFile(self, index):
         indexItem = self.assetTreeModel.index(index.row(), 0, index.parent())
         filePath = self.assetTreeModel.filePath(indexItem)
@@ -116,7 +137,17 @@ class mainWindowT(QMainWindow, Ui_ws8Main):
     def openFx(self, item):
         self.fxTask = item.text()
         path = f'd:/project/{self.selProject}/shot/{self.shotName}/FX/task/{self.fxTask}'
-        houExe = 'c:/Program Files/'
+        os.startfile(path)
+
+    def openLgt(self, item):
+        self.LGTTask = item.text()
+        path = f'd:/project/{self.selProject}/shot/{self.shotName}/LGT/task/{self.LGTTask}'
+        os.startfile(path)
+
+    def openMod(self, item):
+        self.ModTask = item.text()
+        path = f'd:/project/{self.selProject}/shot/{self.shotName}/MOD/task/{self.ModTask}'
+        os.startfile(path)
         
 if __name__ == '__main__':
     
