@@ -29,12 +29,14 @@ class loginBox(QMainWindow, Ui_bambooLogin):
     def logFunc(self):
         results = bbm.logIn(self.username.text(), self.passwd.text(), self.host.text())
         if results[1] == 0 :
+            bbm.storeToken(results[2])
             QMessageBox.information(self, "greet", results[0])
             self.close()
             self.mainW = mainWindowT()
             self.mainW.show()
         else:
             QMessageBox.information(self, "Error", results[0])
+            
 
 '''
     Main Ui 

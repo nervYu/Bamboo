@@ -19,11 +19,11 @@ def logIn(userName, passwd, host):
         if you use http server just replace https to http
     '''
     try:
-        gazu.log_in(userName, passwd)
+        token = gazu.log_in(userName, passwd)
     except:
         return ['Bad UserName or Password Refill Again', 1]
     else:    
-        return ['Hello '+gazu.client.get_current_user()["first_name"], 0]
+        return ['Hello '+gazu.client.get_current_user()["first_name"], 0, token]
 
 
 def getProject4User():
@@ -70,3 +70,25 @@ def getTaskDict(colum, ids):
         taskdict[taskType] = taskList
         n += 1            
     return taskdict
+
+def storeToken(token):
+    path = os.path.expanduser('~') + '\.bamboo'
+    mWorkPath = os.getcwd()
+    tokenPath = path + './token'
+    if not os.path.exists(path):
+        os.makedirs(tokenPath)
+    else:
+        if not os.path.exists(tokenPath):
+            os.makedirs(tokenPath)
+        else:
+            pass
+    os.chdir(tokenPath)
+    if os.path.isfile('token'):
+        os.remove('token') 
+    tokenF = open('token', 'w', encoding='utf-8')
+    tokenStr = str(token)
+    tokenF.write(tokenStr)
+    tokenF.close()
+    os.chdir(mWorkPath)
+    print(os.getcwd())
+

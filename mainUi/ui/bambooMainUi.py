@@ -55,7 +55,7 @@ class Ui_bambooMain(object):
         self.tab.setObjectName(u"tab")
         self.refTree = QTreeView(self.tab)
         self.refTree.setObjectName(u"refTree")
-        self.refTree.setGeometry(QRect(-1, -6, 511, 231))
+        self.refTree.setGeometry(QRect(-2, -1, 511, 221))
         self.tabArea01.addTab(self.tab, "")
         self.toolTab = QWidget()
         self.toolTab.setObjectName(u"toolTab")
